@@ -5,6 +5,7 @@ from aiogram import Bot, Dispatcher
 
 from config.config import load_config
 from handlers import user_handlers
+from keyboards.main_menu_btn import set_main_menu
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +22,8 @@ async def main():
     config = load_config()
     bot = Bot(token= config.token, parse_mode='html')
     dp = Dispatcher()
+
+    await set_main_menu(bot)
 
     dp.include_router(user_handlers.router)
     #dp.include_router(other_handlers.router)
